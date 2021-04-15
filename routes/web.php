@@ -19,11 +19,11 @@ Route::get('/', function () {
 // Route::get('/home', function () {
 //     return view('home');
 // });
-Route::get('siswa/form', function () {
-    return view('siswa.form');
+Route::get('create', function () {
+    return view('siswa.create');
 });
-Route::get('siswa/list', function () {
-    return view('siswa.list');
+Route::get('siswa/', function () {
+    return view('siswa.index');
 });
 
 Route::resource('siswa', 'SiswaController');

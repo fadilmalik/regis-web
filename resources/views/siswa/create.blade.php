@@ -1,7 +1,7 @@
 @extends('home')
 @section('content')
 @if ($errors->any())
-    <div class="alert alert-danger">
+<div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
         <ul>
             @foreach ($errors->all() as $error)
@@ -24,7 +24,10 @@
             </div>
             <div>
                 <strong>Jenis Kelamin:</strong>
-                <input type="text" name="jns_kelamin">
+                <input type="radio" name="jns_kelamin" value="Laki - Laki" checked>
+                <label for="Laki - Laki">Laki - Laki</label>
+                <input type="radio" name="jns_kelamin" value="Perempuan">
+                <label for="Perempuan">Perempuan</label>
             </div>
             <div>
                 <strong>Tempat Lahir:</strong>

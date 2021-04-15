@@ -14,9 +14,10 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data_siswa = Siswa::latest();
+        $data_siswa = Siswa::latest()->paginate(5);
 
-        return view('siswa.list',compact('data_siswa'));
+        return view('siswa.index',compact('data_siswa'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -26,7 +27,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa.form');
+        return view('siswa.create');
     }
 
     /**
@@ -49,7 +50,7 @@ class SiswaController extends Controller
             'jurusan' => 'required',
         ]);
         Siswa::create($request->all());
-        return redirect()->route('siswa.form')
+        return redirect()->route('siswa.index')
             ->with('success','Data berhasil ditambahkan.');
     }
 
@@ -96,7 +97,7 @@ class SiswaController extends Controller
             'jurusan' => 'required',
         ]);
         $siswa->update($request->all());
-        return redirect()->route('siswa.list')
+        return redirect()->route('siswa.index')
             ->with('success','Data berhasil diperbarui.');
     }
 
@@ -109,7 +110,7 @@ class SiswaController extends Controller
     public function destroy(Siswa $siswa)
     {
         $siswa->delete();
-        return redirect()->route('siswa.list')
+        return redirect()->route('siswa.index')
             ->with('success','Data berhasil dihapus.');
     }
 }
